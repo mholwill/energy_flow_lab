@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h1>Energy Data</h1>
+    <h2>{{this.energyTypes.data.from.substring(0, 16)}} to {{this.energyTypes.data.to.substring(0, 16)}}</h2>
     <fuel-chart :formattedFuels="formattedFuels"/>
   </div>
 </template>
@@ -44,7 +45,21 @@ export default {
 </script>
 
 <style>
-#app {
-
+*{
+  padding: 0px;
+  margin: 0px;
 }
+#app {
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Montserrat';
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 40px;
+}
+
+
+
 </style>
