@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <h1>Energy Data</h1>
-    <h2>{{this.formattedFuels}}</h2>
-
+    <fuel-chart :formattedFuels="formattedFuels"/>
   </div>
 </template>
 
 <script>
+import FuelsChart from './components/FuelsChart.vue'
 
 
 export default {
@@ -25,7 +25,11 @@ export default {
         newArray.push(fuelObject.perc)
         this.formattedFuels.push(newArray)
       })
+      this.formattedFuels.unshift(["Fuel", "Percentage"])
     }
+  },
+  components: {
+    "fuel-chart": FuelsChart
   },
   mounted() {
   fetch('https://api.carbonintensity.org.uk/generation')
@@ -33,8 +37,6 @@ export default {
   .then((energyTypes) => {
     this.energyTypes = energyTypes;
     this.formatFuel(energyTypes.data.generationmix);
-    console.log(this.energyTypes);
-    console.log(this.formattedFuels);
   })
   }
 }
